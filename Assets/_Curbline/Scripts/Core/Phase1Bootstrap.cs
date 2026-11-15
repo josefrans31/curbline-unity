@@ -99,7 +99,7 @@ namespace Curbline
         static void SetUpLight()
         {
             Light sun = null;
-            foreach (var l in FindObjectsByType<Light>(FindObjectsSortMode.None)) if (l.type == LightType.Directional) { sun = l; break; }
+            foreach (var l in FindObjectsByType<Light>()) if (l.type == LightType.Directional) { sun = l; break; }
             if (sun == null) sun = new GameObject("Sun").AddComponent<Light>();
             sun.type = LightType.Directional;
             sun.transform.rotation = Quaternion.Euler(50, -30, 0);

@@ -71,7 +71,7 @@ namespace Curbline
             speedText = Label(dash, "0", 72, TextAnchor.MiddleCenter, new Vector2(0, -6), new Vector2(300, 84), FontStyle.Bold, centered: true);
             unitText = Label(dash, "km/h", 22, TextAnchor.MiddleCenter, new Vector2(0, -88), new Vector2(300, 28), centered: true);
             var rpmBg = Img(dash, new Color(1, 1, 1, 0.12f), new Vector2(0.5f, 0), new Vector2(0, 16), new Vector2(240, 10));
-            rpmFill = Img(rpmBg, Amber, new Vector2(0, 0.5f), Vector2.zero, new Vector2(240, 10));
+            rpmFill = Img(rpmBg.rectTransform, Amber, new Vector2(0, 0.5f), Vector2.zero, new Vector2(240, 10));
             rpmFill.rectTransform.pivot = new Vector2(0, 0.5f);
 
             // gear selector, to the left of the pedals
