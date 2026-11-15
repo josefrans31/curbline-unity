@@ -16,10 +16,10 @@ namespace Curbline
 
         public void Build()
         {
-            var asphalt = Mats.Get(Mats.Hex("#3a3d42"), 0.25f);
-            var grass = Mats.Get(Mats.Hex("#5d7a3a"), 0.1f);
-            var paint = Mats.Get(Mats.Hex("#f1f1ec"), 0.3f);
-            var curb = Mats.Get(Mats.Hex("#b9b7ae"), 0.2f);
+            var asphalt = Mats.Textured(LookSetup.Asphalt(), new Vector2(24, 24), 0.3f);
+            var grass = Mats.Textured(LookSetup.Grass(), new Vector2(100, 100), 0.05f);
+            var paint = Mats.Get(Mats.Hex("#e9e9e2"), 0.45f);
+            var curb = Mats.Textured(LookSetup.Concrete(), new Vector2(40, 1), 0.15f);
             var bayFill = Mats.Get(new Color(0.24f, 0.81f, 0.56f), 0.2f, 0f, new Color(0.05f, 0.25f, 0.15f));
             var pole = Mats.Get(Mats.Hex("#5a6068"), 0.5f, 0.6f);
 
@@ -69,7 +69,7 @@ namespace Curbline
                 lamp.transform.SetParent(post.transform, false);
                 lamp.transform.position = p + Vector3.up * 5.8f;
                 lamp.type = LightType.Point; lamp.range = 16; lamp.intensity = 2.2f; lamp.color = new Color(1f, 0.85f, 0.65f);
-                lamp.shadows = LightShadows.None;
+                lamp.shadows = LightShadows.None; lamp.enabled = false;   // street lamps come on at night (time of day, Phase 9)
             }
 
             // painted arrows so you can tell which way is forward from the start

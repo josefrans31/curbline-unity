@@ -31,8 +31,8 @@ namespace Curbline
             var p = s.Body;
             float L = p.L, W = p.W, H = p.H, b = p.B, wr = p.WheelR;
             float belt = b + (H - b) * 0.52f;        // top of the doors
-            var paint = Mats.New(s.Color, 0.75f, 0.25f);
-            var glass = Mats.Get(new Color(0.08f, 0.1f, 0.13f), 0.95f, 0.1f);
+            var paint = Mats.New(s.Color, 0.86f, 0.35f);   // glossy clear coat
+            var glass = Mats.Get(new Color(0.05f, 0.07f, 0.09f), 0.97f, 0.2f);
             var black = Mats.Get(new Color(0.06f, 0.06f, 0.07f), 0.3f);
             var tire = Mats.Get(new Color(0.07f, 0.07f, 0.075f), 0.15f);
             var rim = Mats.Get(new Color(0.78f, 0.8f, 0.83f), 0.8f, 0.9f);

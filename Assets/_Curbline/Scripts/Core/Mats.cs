@@ -59,6 +59,15 @@ namespace Curbline
             if (m.HasProperty("_EmissionColor")) m.SetColor("_EmissionColor", c);
         }
 
+        /// <summary>A lit material with a tiled texture.</summary>
+        public static Material Textured(Texture2D tex, Vector2 tiling, float smoothness = 0.2f)
+        {
+            var m = New(Color.white, smoothness);
+            if (m.HasProperty("_BaseMap")) { m.SetTexture("_BaseMap", tex); m.SetTextureScale("_BaseMap", tiling); }
+            if (m.HasProperty("_MainTex")) { m.SetTexture("_MainTex", tex); m.SetTextureScale("_MainTex", tiling); }
+            return m;
+        }
+
         public static Color Hex(string hex) => ColorUtility.TryParseHtmlString(hex, out var c) ? c : Color.magenta;
 
         /// <summary>A primitive with no collider, parented and placed.</summary>

@@ -26,7 +26,6 @@ namespace Curbline
             Application.targetFrameRate = 60;
             Time.fixedDeltaTime = 1f / 60f;   // the web game steps at 60 Hz too
 
-            SetUpLight();
             lot = new GameObject("TestLot").AddComponent<TestLot>();
             lot.Build();
 
@@ -43,6 +42,7 @@ namespace Curbline
             camGo.GetComponent<Camera>().farClipPlane = 600;
             if (!camGo.TryGetComponent(out rig)) rig = camGo.AddComponent<CameraRig>();
             rig.Target = car;
+            LookSetup.Apply(camGo.GetComponent<Camera>(), FindSun(), Vector3.zero, 130f);
 
             hud = new GameObject("HUD Root").AddComponent<DriveHud>();
             hud.Title = () => "Phase 1 test lot · " + CameraRig.Label(rig.Mode) + " camera";
@@ -96,20 +96,10 @@ namespace Curbline
             rig.Snap();
         }
 
-        static void SetUpLight()
+        static Light FindSun()
         {
-            Light sun = null;
-            foreach (var l in FindObjectsByType<Light>()) if (l.type == LightType.Directional) { sun = l; break; }
-            if (sun == null) sun = new GameObject("Sun").AddComponent<Light>();
-            sun.type = LightType.Directional;
-            sun.transform.rotation = Quaternion.Euler(50, -30, 0);
-            sun.intensity = 1.2f;
-            sun.color = new Color(1f, 0.96f, 0.88f);
-            sun.shadows = LightShadows.Soft;
-            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
-            RenderSettings.ambientSkyColor = new Color(0.62f, 0.72f, 0.85f);
-            RenderSettings.ambientEquatorColor = new Color(0.5f, 0.52f, 0.5f);
-            RenderSettings.ambientGroundColor = new Color(0.25f, 0.24f, 0.22f);
+            foreach (var l in FindObjectsByType<Light>()) if (l.type == LightType.Directional) return l;
+            return new GameObject("Sun").AddComponent<Light>();
         }
     }
 }
